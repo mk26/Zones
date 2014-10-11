@@ -58,6 +58,7 @@
     
     newCell.textLabel.text=[[allZones objectAtIndex:indexPath.row] name];
     newCell.detailTextLabel.text=[[allZones objectAtIndex:indexPath.row] currentTime];
+    
     return newCell;
 }
 
