@@ -1,5 +1,5 @@
 //
-//  ZNViewController.h
+//  DetailsViewController.h
 //  Zones
 //
 //  Created by Karthik on 5/18/14.
@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
-@interface ZNViewController : UIViewController
+@interface DetailsViewController : UIViewController
 
 @end

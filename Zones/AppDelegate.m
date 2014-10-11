@@ -1,17 +1,19 @@
 //
-//  ZNAppDelegate.m
+//  AppDelegate.m
 //  Zones
 //
 //  Created by Karthik on 5/18/14.
 //  Copyright (c) 2014 Karthik. All rights reserved.
 //
 
-#import "ZNAppDelegate.h"
+#import "AppDelegate.h"
 
-@implementation ZNAppDelegate
+@implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    formatter = [[NSDateFormatter alloc] init];
+    allZones = [[NSMutableArray alloc] init];
     // Override point for customization after application launch.
     return YES;
 }
