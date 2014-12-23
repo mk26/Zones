@@ -56,4 +56,30 @@
     return [NSString stringWithFormat:@"%@",[formatter stringFromDate:[NSDate date]]];
 }
 
+/* For archiving */
+
+- (id) initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super init])
+    {
+        self.name = [aDecoder decodeObjectForKey:@"name"];
+        self.info = [aDecoder decodeObjectForKey:@"info"];
+        self.timeZone = [aDecoder decodeObjectForKey:@"timeZone"];
+        CLLocationDegrees latitude = [aDecoder decodeDoubleForKey:@"latitude"];
+        CLLocationDegrees longitude = [aDecoder decodeDoubleForKey:@"longitude"];
+        self.location = CLLocationCoordinate2DMake(latitude,longitude);
+    }
+    return self;
+}
+
+- (void) encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.name forKey:@"name"];
+    [aCoder encodeObject:self.info forKey:@"info"];
+    [aCoder encodeObject:self.timeZone forKey:@"timeZone"];
+    [aCoder encodeDouble:self.location.latitude forKey:@"latitude"];
+    [aCoder encodeDouble:self.location.longitude forKey:@"longitude"];
+}
+
+
 @end

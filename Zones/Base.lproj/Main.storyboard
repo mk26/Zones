@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LRB-OA-TGM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C81f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LRB-OA-TGM">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -293,12 +293,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="uu6-Y6-WkY">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="uu6-Y6-WkY">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="600" id="A4k-gg-Nmz"/>
-                                </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="vXZ-lx-hvc" id="bQ8-Y4-N7W"/>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="lkX-QF-QhI"/>
@@ -307,12 +304,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="uu6-Y6-WkY" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="0Vn-kZ-NlA"/>
+                            <constraint firstItem="uu6-Y6-WkY" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="79d-9e-qTN"/>
+                            <constraint firstAttribute="trailing" secondItem="uu6-Y6-WkY" secondAttribute="trailing" id="AF5-2X-nZR"/>
                             <constraint firstItem="uu6-Y6-WkY" firstAttribute="leading" secondItem="2fi-mo-0CV" secondAttribute="leading" id="Cq5-vg-DAU"/>
                             <constraint firstItem="uu6-Y6-WkY" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="GG5-Ja-yiy"/>
-                            <constraint firstItem="uu6-Y6-WkY" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="-64" id="UQx-xM-3eJ"/>
+                            <constraint firstItem="uu6-Y6-WkY" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="GwR-e1-m7g"/>
                             <constraint firstItem="uu6-Y6-WkY" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="VGW-oW-1C0"/>
                             <constraint firstItem="uu6-Y6-WkY" firstAttribute="trailing" secondItem="2fi-mo-0CV" secondAttribute="trailing" id="q2V-PK-0Mm"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="uu6-Y6-WkY" secondAttribute="bottom" id="slx-pH-Yn7"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
