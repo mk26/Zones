@@ -20,7 +20,7 @@
 - (id) init;
 
 + (NSInteger) getActualIndexOf:(Zone*)current; //used for filter views
-- (NSString*) currentTime;
+- (NSString*) currentTimeWithOffset:(NSTimeInterval)offset;
 
 @property (strong,nonatomic) NSString* name;
 @property (strong,nonatomic) NSString* info;

@@ -48,12 +48,22 @@
     return index;
 }
 
-- (NSString*)currentTime
+- (NSString*)currentTimeWithOffset:(NSTimeInterval)offset
 {
     [formatter setTimeZone:self.timeZone];
     [formatter setDateStyle:NSDateFormatterNoStyle];
     [formatter setTimeStyle:NSDateFormatterMediumStyle];
+    if(offset<=0)
     return [NSString stringWithFormat:@"%@",[formatter stringFromDate:[NSDate date]]];
+    else return [NSString stringWithFormat:@"%@",[formatter stringFromDate:[[NSDate date] dateByAddingTimeInterval:offset]]];
+}
+
+- (NSDate*)currentTime
+{
+    [formatter setTimeZone:self.timeZone];
+    [formatter setDateStyle:NSDateFormatterNoStyle];
+    [formatter setTimeStyle:NSDateFormatterMediumStyle];
+    return [NSDate date];
 }
 
 /* For archiving */

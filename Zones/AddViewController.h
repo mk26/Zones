@@ -16,6 +16,7 @@ NSTimeZone *timeZone;
 @interface AddViewController : UIViewController
 
 - (IBAction)addCancelled:(UIBarButtonItem*)sender;
+- (IBAction)dismiss:(UIGestureRecognizer*)sender;
 - (IBAction)addZone:(UIBarButtonItem *)sender;
 
 @property (strong, nonatomic) NSTimeZone* timeZone;

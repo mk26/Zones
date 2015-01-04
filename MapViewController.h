@@ -22,5 +22,6 @@ MKCoordinateRegion tempRegion;
 
 @property (strong) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UITextField *locationField;
+@property (strong, nonatomic) IBOutlet UIView *addFromContact;
 
 @end

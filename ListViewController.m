@@ -20,6 +20,7 @@
 {
     [super viewDidLoad];
     [self beginTimer];
+    self.tabBarController.tabBar.tintColor = [UIColor colorWithRed:0.11 green:0.72 blue:0.99 alpha:1];
     // Do any additional setup after loading the view.
 }
 
@@ -28,7 +29,6 @@
     [zonesTable reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
     if([allZones count]==0) editZonesButton.enabled=NO;
         else editZonesButton.enabled=YES;
-        
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,13 +53,22 @@
     if (newCell==nil)
     {
         newCell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
-        newCell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+        //newCell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     }
     
     newCell.textLabel.text=[[allZones objectAtIndex:indexPath.row] name];
-    newCell.detailTextLabel.text=[[allZones objectAtIndex:indexPath.row] currentTime];
-    
+    newCell.detailTextLabel.text=[[allZones objectAtIndex:indexPath.row] currentTimeWithOffset:timePeekSlider.value];
+    newCell.textLabel.textColor=[UIColor whiteColor];
+    newCell.textLabel.font=[UIFont fontWithName:@"Avenir" size:20.0];
+    newCell.detailTextLabel.textColor=[UIColor whiteColor];
+    newCell.detailTextLabel.font=[UIFont fontWithName:@"Menlo" size:30.0];
+    newCell.backgroundColor=[self backgroundColorForTime:newCell.detailTextLabel.text];
     return newCell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 80;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -90,6 +99,10 @@
     [allZones removeObjectAtIndex:sourceIndexPath.row];
     [allZones insertObject:temp atIndex:destinationIndexPath.row];
 }
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"Remove";
+}
 
 //Edit zones list
 - (IBAction)editZones:(UIBarButtonItem *)sender
@@ -110,8 +123,7 @@
 
 - (IBAction)timePeekChanged:(UISlider*)sender
 {
-    
-    
+    [[allZones firstObject] currentTimeWithOffset:timePeekSlider.value];
 }
 
 - (void)beginTimer
@@ -122,6 +134,41 @@
         [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
         [timer fire];
     }];
+}
+
+- (UIColor*)backgroundColorForTime:(NSString*)currentTime
+{
+    NSDictionary* colors = [[NSDictionary alloc] initWithObjectsAndKeys:
+                            [UIColor colorWithHue:0.67 saturation:0.61 brightness:0.51 alpha:1],@"12AM",
+                            [UIColor colorWithHue:0.67 saturation:0.61 brightness:0.61 alpha:1],@"1AM",
+                            [UIColor blueColor],@"2AM",
+                            [UIColor blueColor],@"3AM",
+                            [UIColor blueColor],@"4AM",
+                            [UIColor colorWithHue:0.63 saturation:0.76 brightness:0.73 alpha:1],@"5AM",
+                            [UIColor blueColor],@"6AM",
+                            [UIColor blueColor],@"7AM",
+                            [UIColor blueColor],@"8AM",
+                            [UIColor blueColor],@"9AM",
+                            [UIColor blueColor],@"10AM",
+                            [UIColor blueColor],@"11AM",
+                            [UIColor blueColor],@"12PM",
+                            [UIColor blueColor],@"1PM",
+                            [UIColor blueColor],@"2PM",
+                            [UIColor blueColor],@"3PM",
+                            [UIColor blueColor],@"4PM",
+                            [UIColor blueColor],@"5PM",
+                            [UIColor blueColor],@"6PM",
+                            [UIColor blueColor],@"7PM",
+                            [UIColor blueColor],@"8PM",
+                            [UIColor blueColor],@"9PM",
+                            [UIColor blueColor],@"10PM",
+                            [UIColor colorWithHue:0.67 saturation:0.61 brightness:0.51 alpha:1],@"11PM",
+                            nil];
+    
+    NSMutableString* time = [NSMutableString stringWithString:[currentTime componentsSeparatedByString:@":"][0]];
+    [time appendString:([currentTime hasSuffix:@"AM"] ? @"AM" : @"PM")];
+    
+    return [colors valueForKey:time];
 }
 
 @end

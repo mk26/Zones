@@ -20,13 +20,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    /*self.view.backgroundColor = [UIColor clearColor];
-    UIToolbar* bgToolbar = [[UIToolbar alloc] initWithFrame:self.view.frame];
-    bgToolbar.barStyle = UIBarStyleDefault;
-    [self.view.superview insertSubview:bgToolbar belowSubview:self.view];*/
-    
-    //self.view.backgroundColor = [UIColor clearColor];
     // Do any additional setup after loading the view.
 }
 
@@ -85,6 +78,11 @@
 }
 
 - (void)addCancelled:(UIBarButtonItem *)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)dismiss:(UIGestureRecognizer*)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

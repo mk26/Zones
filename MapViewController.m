@@ -14,7 +14,7 @@
 
 @implementation MapViewController
 
-@synthesize mapView, locationField;
+@synthesize mapView, locationField, addFromContact;
 
 - (void)viewDidLoad
 {
@@ -44,7 +44,6 @@
     MKCoordinateSpan span = MKCoordinateSpanMake(50, 50);
     tempRegion = MKCoordinateRegionMake(touchMapCoordinate, span);
     
-    //[mapView setCenterCoordinate:touchMapCoordinate];
     //[mapView showAnnotations:mapView.annotations animated:YES];
 }
 
@@ -165,7 +164,7 @@ calloutAccessoryControlTapped:(UIControl *)control
     }];
     
     NSBlockOperation *segueOperation = [NSBlockOperation blockOperationWithBlock:^{
-        self.modalPresentationStyle=UIModalPresentationCustom;
+        addVC.modalPresentationStyle=UIModalPresentationOverFullScreen;
         [self presentViewController:addVC animated:YES completion:nil];
     }];
     
