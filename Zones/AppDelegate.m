@@ -13,6 +13,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     formatter = [[NSDateFormatter alloc] init];
+    defaultFormatter = [[NSDateFormatter alloc] init];
     allZones = [[NSMutableArray alloc] init];
     [self loadData];
     // Override point for customization after application launch.

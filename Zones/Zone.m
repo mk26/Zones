@@ -53,9 +53,20 @@
     [formatter setTimeZone:self.timeZone];
     [formatter setDateStyle:NSDateFormatterNoStyle];
     [formatter setTimeStyle:NSDateFormatterMediumStyle];
-    if(offset<=0)
-    return [NSString stringWithFormat:@"%@",[formatter stringFromDate:[NSDate date]]];
-    else return [NSString stringWithFormat:@"%@",[formatter stringFromDate:[[NSDate date] dateByAddingTimeInterval:offset]]];
+
+    //Compare if next day
+    [defaultFormatter setDateFormat:@"dd"];
+    [defaultFormatter setTimeZone:self.timeZone];
+    NSString* d1 = [defaultFormatter stringFromDate:[[NSDate date] dateByAddingTimeInterval:offset]];
+    [defaultFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+    NSString* d2 = [defaultFormatter stringFromDate:[[NSDate date] dateByAddingTimeInterval:offset]];
+
+    NSString* currentTime = [NSString stringWithFormat:@"%@",[formatter stringFromDate:[[NSDate date] dateByAddingTimeInterval:offset]]];
+    
+    if([d1 intValue] > [d2 intValue])
+        currentTime = [currentTime stringByAppendingString:@" [>]"];
+    
+    return currentTime;
 }
 
 - (NSDate*)currentTime

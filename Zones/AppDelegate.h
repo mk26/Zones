@@ -15,6 +15,7 @@ NSMutableArray *temp;
 CLLocationCoordinate2D tempLocation;
 NSString* tempLocationName;
 NSDateFormatter* formatter;
+NSDateFormatter* defaultFormatter;
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>

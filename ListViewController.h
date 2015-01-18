@@ -16,6 +16,7 @@ NSTimer *timer;
 
 - (IBAction)editZones:(UIBarButtonItem*)sender;
 - (IBAction)timePeekChanged:(UISlider*)sender;
+- (IBAction)timePeekSwipe:(UIGestureRecognizer*)sender;
 
 @property (weak, nonatomic) IBOutlet UISlider *timePeekSlider;
 @property (weak, nonatomic) IBOutlet UITableView *zonesTable;

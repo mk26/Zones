@@ -124,6 +124,39 @@
 - (IBAction)timePeekChanged:(UISlider*)sender
 {
     [[allZones firstObject] currentTimeWithOffset:timePeekSlider.value];
+    timePeekSlider.tintColor = [self backgroundColorForTime:[zonesTable cellForRowAtIndexPath:zonesTable.indexPathsForVisibleRows.firstObject].detailTextLabel.text];
+    /*UIView* changeView = [[UIView alloc] initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width/2)-50, ([UIScreen mainScreen].bounds.size.height/2)-50, 100, 100)];
+    changeView.layer.cornerRadius=5;
+    changeView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.4];
+    UILabel* offsetLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 100)];
+    offsetLabel.font = [UIFont fontWithName:@"Menlo" size:40];
+    offsetLabel.textColor = [UIColor whiteColor];
+    offsetLabel.text = [NSString stringWithFormat:@"+ %0.0f",timePeekSlider.value/3600];
+    [self.view addSubview:changeView];
+    if(![offsetLabel isDescendantOfView:changeView])
+        [changeView addSubview:offsetLabel];*/
+    
+    /*[UIView animateWithDuration:1.0
+                          delay:3.0
+                        options:UIViewAnimationCurveEaseIn | UIViewAnimationOptionAutoreverse
+                     animations: ^{
+                         
+                     }
+                     completion:^(BOOL finished){
+                         [changeView removeFromSuperview];
+                     }];*/
+}
+
+- (IBAction)timePeekSwipe:(UIPanGestureRecognizer*)sender
+{
+    CGPoint velocity = [sender velocityInView:self.view];
+    if (velocity.x > 0) {
+        timePeekSlider.value += 300;
+    }
+    else {
+        timePeekSlider.value -= 300;
+    }
+    timePeekSlider.tintColor = [self backgroundColorForTime:[zonesTable cellForRowAtIndexPath:zonesTable.indexPathsForVisibleRows.firstObject].detailTextLabel.text];
 }
 
 - (void)beginTimer
@@ -139,34 +172,34 @@
 - (UIColor*)backgroundColorForTime:(NSString*)currentTime
 {
     NSDictionary* colors = [[NSDictionary alloc] initWithObjectsAndKeys:
-                            [UIColor colorWithHue:0.67 saturation:0.61 brightness:0.51 alpha:1],@"12AM",
-                            [UIColor colorWithHue:0.67 saturation:0.61 brightness:0.61 alpha:1],@"1AM",
-                            [UIColor blueColor],@"2AM",
-                            [UIColor blueColor],@"3AM",
-                            [UIColor blueColor],@"4AM",
-                            [UIColor colorWithHue:0.63 saturation:0.76 brightness:0.73 alpha:1],@"5AM",
-                            [UIColor blueColor],@"6AM",
-                            [UIColor blueColor],@"7AM",
-                            [UIColor blueColor],@"8AM",
-                            [UIColor blueColor],@"9AM",
-                            [UIColor blueColor],@"10AM",
-                            [UIColor blueColor],@"11AM",
-                            [UIColor blueColor],@"12PM",
-                            [UIColor blueColor],@"1PM",
-                            [UIColor blueColor],@"2PM",
-                            [UIColor blueColor],@"3PM",
-                            [UIColor blueColor],@"4PM",
-                            [UIColor blueColor],@"5PM",
-                            [UIColor blueColor],@"6PM",
-                            [UIColor blueColor],@"7PM",
-                            [UIColor blueColor],@"8PM",
-                            [UIColor blueColor],@"9PM",
-                            [UIColor blueColor],@"10PM",
-                            [UIColor colorWithHue:0.67 saturation:0.61 brightness:0.51 alpha:1],@"11PM",
+                            [UIColor colorWithHue:0.67 saturation:0.41 brightness:0.30 alpha:1.0],@"12AM",
+                            [UIColor colorWithHue:0.67 saturation:0.41 brightness:0.30 alpha:1.0],@"1AM",
+                            [UIColor colorWithHue:0.67 saturation:0.41 brightness:0.40 alpha:1.0],@"2AM",
+                            [UIColor colorWithHue:0.67 saturation:0.41 brightness:0.45 alpha:1.0],@"3AM",
+                            [UIColor colorWithHue:0.67 saturation:0.41 brightness:0.55 alpha:1.0],@"4AM",
+                            [UIColor colorWithHue:0.67 saturation:0.61 brightness:0.65 alpha:1.0],@"5AM",
+                            [UIColor colorWithHue:0.07 saturation:0.60 brightness:0.70 alpha:1.0],@"6AM",
+                            [UIColor colorWithHue:0.07 saturation:0.70 brightness:0.81 alpha:1.0],@"7AM",
+                            [UIColor colorWithHue:0.60 saturation:0.60 brightness:0.99 alpha:1.0],@"8AM",
+                            [UIColor colorWithHue:0.60 saturation:0.75 brightness:0.99 alpha:1.9],@"9AM",
+                            [UIColor colorWithHue:0.60 saturation:0.80 brightness:0.99 alpha:1.0],@"10AM",
+                            [UIColor colorWithHue:0.55 saturation:0.85 brightness:0.99 alpha:1.0],@"11AM",
+                            [UIColor colorWithHue:0.55 saturation:0.90 brightness:0.99 alpha:1.0],@"12PM",
+                            [UIColor colorWithHue:0.55 saturation:0.95 brightness:0.99 alpha:1.0],@"1PM",
+                            [UIColor colorWithHue:0.55 saturation:0.99 brightness:0.99 alpha:1.0],@"2PM",
+                            [UIColor colorWithHue:0.55 saturation:0.95 brightness:0.85 alpha:1.0],@"3PM",
+                            [UIColor colorWithHue:0.59 saturation:0.55 brightness:0.65 alpha:1.0],@"4PM",
+                            [UIColor colorWithHue:0.85 saturation:0.51 brightness:0.61 alpha:1.0],@"5PM",
+                            [UIColor colorWithHue:0.80 saturation:0.41 brightness:0.41 alpha:1.0],@"6PM",
+                            [UIColor colorWithHue:0.61 saturation:0.71 brightness:0.51 alpha:1.0],@"7PM",
+                            [UIColor colorWithHue:0.61 saturation:0.71 brightness:0.45 alpha:1.0],@"8PM",
+                            [UIColor colorWithHue:0.61 saturation:0.61 brightness:0.40 alpha:1.0],@"9PM",
+                            [UIColor colorWithHue:0.61 saturation:0.51 brightness:0.35 alpha:1.0],@"10PM",
+                            [UIColor colorWithHue:0.61 saturation:0.51 brightness:0.30 alpha:1],@"11PM",
                             nil];
     
     NSMutableString* time = [NSMutableString stringWithString:[currentTime componentsSeparatedByString:@":"][0]];
-    [time appendString:([currentTime hasSuffix:@"AM"] ? @"AM" : @"PM")];
+    [time appendString:([currentTime containsString:@"AM"] ? @"AM" : @"PM")];
     
     return [colors valueForKey:time];
 }
