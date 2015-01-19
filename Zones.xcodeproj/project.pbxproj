@@ -8,15 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		25BA92031953C1C800E3DF6E /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BA92021953C1C800E3DF6E /* AddViewController.m */; };
+		25C43EC01A6C36A400527F57 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25C43EBF1A6C36A400527F57 /* Launch Screen.xib */; };
+		25C43EC21A6C3E5400527F57 /* Akkurat-Mono.otf in Resources */ = {isa = PBXBuildFile; fileRef = 25C43EC11A6C3E5400527F57 /* Akkurat-Mono.otf */; };
+		25C43EC61A6C78FE00527F57 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25C43EC51A6C78FE00527F57 /* Images.xcassets */; };
 		25CC5B6819DB40A500E40A25 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F52CC3192945A8003CD808 /* MapKit.framework */; };
 		25F52C8019293B88003CD808 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F52C7F19293B88003CD808 /* Foundation.framework */; };
-		25F52C8219293B88003CD808 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F52C8119293B88003CD808 /* CoreGraphics.framework */; };
 		25F52C8419293B88003CD808 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F52C8319293B88003CD808 /* UIKit.framework */; };
 		25F52C8A19293B88003CD808 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 25F52C8819293B88003CD808 /* InfoPlist.strings */; };
 		25F52C8C19293B88003CD808 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F52C8B19293B88003CD808 /* main.m */; };
 		25F52C9019293B88003CD808 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F52C8F19293B88003CD808 /* AppDelegate.m */; };
 		25F52C9319293B88003CD808 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25F52C9119293B88003CD808 /* Main.storyboard */; };
-		25F52C9819293B88003CD808 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25F52C9719293B88003CD808 /* Images.xcassets */; };
 		25F52C9F19293B88003CD808 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F52C9E19293B88003CD808 /* XCTest.framework */; };
 		25F52CA019293B88003CD808 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F52C7F19293B88003CD808 /* Foundation.framework */; };
 		25F52CA119293B88003CD808 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F52C8319293B88003CD808 /* UIKit.framework */; };
@@ -26,7 +27,6 @@
 		25F52CBC19294503003CD808 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F52CBB19294503003CD808 /* ListViewController.m */; };
 		25F52CBF1929451A003CD808 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F52CBE1929451A003CD808 /* MapViewController.m */; };
 		25F52CC219294528003CD808 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F52CC119294528003CD808 /* DetailsViewController.m */; };
-		25F52CC6192945AF003CD808 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F52CC5192945AF003CD808 /* CoreMotion.framework */; };
 		25F52CC8192945B5003CD808 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F52CC7192945B5003CD808 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +43,9 @@
 /* Begin PBXFileReference section */
 		25BA92011953C1C800E3DF6E /* AddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
 		25BA92021953C1C800E3DF6E /* AddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
+		25C43EBF1A6C36A400527F57 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
+		25C43EC11A6C3E5400527F57 /* Akkurat-Mono.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Akkurat-Mono.otf"; sourceTree = "<group>"; };
+		25C43EC51A6C78FE00527F57 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		25F52C7C19293B88003CD808 /* Zones.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zones.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25F52C7F19293B88003CD808 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		25F52C8119293B88003CD808 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -54,7 +57,6 @@
 		25F52C8E19293B88003CD808 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		25F52C8F19293B88003CD808 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		25F52C9219293B88003CD808 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		25F52C9719293B88003CD808 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		25F52C9D19293B88003CD808 /* ZonesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZonesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25F52C9E19293B88003CD808 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		25F52CA619293B89003CD808 /* ZonesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ZonesTests-Info.plist"; sourceTree = "<group>"; };
@@ -80,8 +82,6 @@
 			files = (
 				25CC5B6819DB40A500E40A25 /* MapKit.framework in Frameworks */,
 				25F52CC8192945B5003CD808 /* CoreLocation.framework in Frameworks */,
-				25F52CC6192945AF003CD808 /* CoreMotion.framework in Frameworks */,
-				25F52C8219293B88003CD808 /* CoreGraphics.framework in Frameworks */,
 				25F52C8419293B88003CD808 /* UIKit.framework in Frameworks */,
 				25F52C8019293B88003CD808 /* Foundation.framework in Frameworks */,
 			);
@@ -141,7 +141,8 @@
 				25F52CB9192942ED003CD808 /* Controller */,
 				25F52C8E19293B88003CD808 /* AppDelegate.h */,
 				25F52C8F19293B88003CD808 /* AppDelegate.m */,
-				25F52C9719293B88003CD808 /* Images.xcassets */,
+				25C43EC11A6C3E5400527F57 /* Akkurat-Mono.otf */,
+				25C43EC51A6C78FE00527F57 /* Images.xcassets */,
 				25F52C8619293B88003CD808 /* Supporting Files */,
 			);
 			path = Zones;
@@ -198,6 +199,7 @@
 			children = (
 				25F52CBA19294503003CD808 /* ListViewController.h */,
 				25F52CBB19294503003CD808 /* ListViewController.m */,
+				25C43EBF1A6C36A400527F57 /* Launch Screen.xib */,
 				25BA92011953C1C800E3DF6E /* AddViewController.h */,
 				25BA92021953C1C800E3DF6E /* AddViewController.m */,
 				25F52CC019294528003CD808 /* DetailsViewController.h */,
@@ -288,7 +290,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25F52C9819293B88003CD808 /* Images.xcassets in Resources */,
+				25C43EC01A6C36A400527F57 /* Launch Screen.xib in Resources */,
+				25C43EC61A6C78FE00527F57 /* Images.xcassets in Resources */,
+				25C43EC21A6C3E5400527F57 /* Akkurat-Mono.otf in Resources */,
 				25F52C8A19293B88003CD808 /* InfoPlist.strings in Resources */,
 				25F52C9319293B88003CD808 /* Main.storyboard in Resources */,
 			);

@@ -56,12 +56,12 @@
         //newCell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     }
     
-    newCell.textLabel.text=[[allZones objectAtIndex:indexPath.row] name];
+    newCell.textLabel.text=[[[allZones objectAtIndex:indexPath.row] name] uppercaseString];
     newCell.detailTextLabel.text=[[allZones objectAtIndex:indexPath.row] currentTimeWithOffset:timePeekSlider.value];
     newCell.textLabel.textColor=[UIColor whiteColor];
-    newCell.textLabel.font=[UIFont fontWithName:@"Avenir" size:20.0];
+    newCell.textLabel.font=[UIFont fontWithName:@"DIN Alternate" size:17.0];
     newCell.detailTextLabel.textColor=[UIColor whiteColor];
-    newCell.detailTextLabel.font=[UIFont fontWithName:@"Menlo" size:30.0];
+    newCell.detailTextLabel.font=[UIFont fontWithName:@"Akkurat-Mono" size:29.0];
     newCell.backgroundColor=[self backgroundColorForTime:newCell.detailTextLabel.text];
     return newCell;
 }
@@ -99,6 +99,7 @@
     [allZones removeObjectAtIndex:sourceIndexPath.row];
     [allZones insertObject:temp atIndex:destinationIndexPath.row];
 }
+
 -(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return @"Remove";
@@ -112,12 +113,22 @@
         sender.title=@"Edit";
         [zonesTable setEditing:NO animated:YES];
         [self beginTimer];
+        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            timePeekSlider.alpha = 1.0;
+            [timePeekSlider setHidden:NO];
+        } completion:^(BOOL finished) {
+        }];
     }
     else if ([zonesTable isEditing]==NO)
     {
         [zonesTable setEditing:YES animated:YES];
         sender.title=@"Done";
         [timer invalidate];
+        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            timePeekSlider.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            [timePeekSlider setHidden:YES];
+        }];
     }
 }
 
@@ -178,8 +189,8 @@
                             [UIColor colorWithHue:0.67 saturation:0.41 brightness:0.45 alpha:1.0],@"3AM",
                             [UIColor colorWithHue:0.67 saturation:0.41 brightness:0.55 alpha:1.0],@"4AM",
                             [UIColor colorWithHue:0.67 saturation:0.61 brightness:0.65 alpha:1.0],@"5AM",
-                            [UIColor colorWithHue:0.07 saturation:0.60 brightness:0.70 alpha:1.0],@"6AM",
-                            [UIColor colorWithHue:0.07 saturation:0.70 brightness:0.81 alpha:1.0],@"7AM",
+                            [UIColor colorWithHue:0.07 saturation:0.70 brightness:0.86 alpha:1.0],@"6AM",
+                            [UIColor colorWithHue:0.13 saturation:0.60 brightness:0.90 alpha:1.0],@"7AM",
                             [UIColor colorWithHue:0.60 saturation:0.60 brightness:0.99 alpha:1.0],@"8AM",
                             [UIColor colorWithHue:0.60 saturation:0.75 brightness:0.99 alpha:1.9],@"9AM",
                             [UIColor colorWithHue:0.60 saturation:0.80 brightness:0.99 alpha:1.0],@"10AM",

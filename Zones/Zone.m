@@ -65,7 +65,8 @@
     
     if([d1 intValue] > [d2 intValue])
         currentTime = [currentTime stringByAppendingString:@" [>]"];
-    
+    else if ([d1 intValue] < [d2 intValue])
+        currentTime = [currentTime stringByAppendingString:@" [<]"];
     return currentTime;
 }
 
