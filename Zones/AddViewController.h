@@ -19,6 +19,7 @@ NSTimeZone *timeZone;
 - (IBAction)dismiss:(UIGestureRecognizer*)sender;
 - (IBAction)addZone:(UIBarButtonItem *)sender;
 
+@property (weak, nonatomic) UITabBarController* previousVC;
 @property (strong, nonatomic) NSTimeZone* timeZone;
 
 @property (weak, nonatomic) IBOutlet UITextField *zoneNameField;

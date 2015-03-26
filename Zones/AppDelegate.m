@@ -13,7 +13,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterNoStyle];
+    [formatter setTimeStyle:NSDateFormatterMediumStyle];
+    
     defaultFormatter = [[NSDateFormatter alloc] init];
+    [defaultFormatter setDateFormat:@"dd"];
+    
     allZones = [[NSMutableArray alloc] init];
     [self loadData];
     // Override point for customization after application launch.
@@ -46,6 +51,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [self saveData];
 }
 
 /* Data Storage */

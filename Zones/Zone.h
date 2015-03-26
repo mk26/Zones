@@ -21,6 +21,7 @@
 
 + (NSInteger) getActualIndexOf:(Zone*)current; //used for filter views
 - (NSString*) currentTimeWithOffset:(NSTimeInterval)offset;
+- (NSString*) getflagIcon:(NSTimeInterval)offset;
 
 @property (strong,nonatomic) NSString* name;
 @property (strong,nonatomic) NSString* info;

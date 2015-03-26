@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import "AddViewController.h"
+#import "AlarmsViewController.h"
+#import "ZoneCell.h"
 
 NSTimer *timer;
 

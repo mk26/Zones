@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2599BF8E1AC088D200A2CAE0 /* AlarmsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2599BF8D1AC088D200A2CAE0 /* AlarmsViewController.m */; };
 		25BA92031953C1C800E3DF6E /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BA92021953C1C800E3DF6E /* AddViewController.m */; };
 		25C43EC01A6C36A400527F57 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25C43EBF1A6C36A400527F57 /* Launch Screen.xib */; };
 		25C43EC21A6C3E5400527F57 /* Akkurat-Mono.otf in Resources */ = {isa = PBXBuildFile; fileRef = 25C43EC11A6C3E5400527F57 /* Akkurat-Mono.otf */; };
 		25C43EC61A6C78FE00527F57 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25C43EC51A6C78FE00527F57 /* Images.xcassets */; };
 		25CC5B6819DB40A500E40A25 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F52CC3192945A8003CD808 /* MapKit.framework */; };
+		25F151B91AC245B40018BB69 /* ZoneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F151B81AC245B40018BB69 /* ZoneCell.m */; };
 		25F52C8019293B88003CD808 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F52C7F19293B88003CD808 /* Foundation.framework */; };
 		25F52C8419293B88003CD808 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F52C8319293B88003CD808 /* UIKit.framework */; };
 		25F52C8A19293B88003CD808 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 25F52C8819293B88003CD808 /* InfoPlist.strings */; };
@@ -41,11 +43,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2599BF8C1AC088D200A2CAE0 /* AlarmsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmsViewController.h; sourceTree = "<group>"; };
+		2599BF8D1AC088D200A2CAE0 /* AlarmsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmsViewController.m; sourceTree = "<group>"; };
 		25BA92011953C1C800E3DF6E /* AddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
 		25BA92021953C1C800E3DF6E /* AddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
 		25C43EBF1A6C36A400527F57 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		25C43EC11A6C3E5400527F57 /* Akkurat-Mono.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Akkurat-Mono.otf"; sourceTree = "<group>"; };
 		25C43EC51A6C78FE00527F57 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		25F151B71AC245B40018BB69 /* ZoneCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoneCell.h; sourceTree = "<group>"; };
+		25F151B81AC245B40018BB69 /* ZoneCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoneCell.m; sourceTree = "<group>"; };
 		25F52C7C19293B88003CD808 /* Zones.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zones.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25F52C7F19293B88003CD808 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		25F52C8119293B88003CD808 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -190,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				25F52C9119293B88003CD808 /* Main.storyboard */,
+				25C43EBF1A6C36A400527F57 /* Launch Screen.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -197,15 +204,18 @@
 		25F52CB9192942ED003CD808 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2599BF8C1AC088D200A2CAE0 /* AlarmsViewController.h */,
+				2599BF8D1AC088D200A2CAE0 /* AlarmsViewController.m */,
 				25F52CBA19294503003CD808 /* ListViewController.h */,
 				25F52CBB19294503003CD808 /* ListViewController.m */,
-				25C43EBF1A6C36A400527F57 /* Launch Screen.xib */,
 				25BA92011953C1C800E3DF6E /* AddViewController.h */,
 				25BA92021953C1C800E3DF6E /* AddViewController.m */,
 				25F52CC019294528003CD808 /* DetailsViewController.h */,
 				25F52CC119294528003CD808 /* DetailsViewController.m */,
 				25F52CBD1929451A003CD808 /* MapViewController.h */,
 				25F52CBE1929451A003CD808 /* MapViewController.m */,
+				25F151B71AC245B40018BB69 /* ZoneCell.h */,
+				25F151B81AC245B40018BB69 /* ZoneCell.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -313,9 +323,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2599BF8E1AC088D200A2CAE0 /* AlarmsViewController.m in Sources */,
 				25F52C9019293B88003CD808 /* AppDelegate.m in Sources */,
 				25F52CB6192942D2003CD808 /* Zone.m in Sources */,
 				25F52CBF1929451A003CD808 /* MapViewController.m in Sources */,
+				25F151B91AC245B40018BB69 /* ZoneCell.m in Sources */,
 				25BA92031953C1C800E3DF6E /* AddViewController.m in Sources */,
 				25F52CC219294528003CD808 /* DetailsViewController.m in Sources */,
 				25F52CBC19294503003CD808 /* ListViewController.m in Sources */,
@@ -451,7 +463,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -468,7 +480,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

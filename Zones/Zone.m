@@ -51,23 +51,24 @@
 - (NSString*)currentTimeWithOffset:(NSTimeInterval)offset
 {
     [formatter setTimeZone:self.timeZone];
-    [formatter setDateStyle:NSDateFormatterNoStyle];
-    [formatter setTimeStyle:NSDateFormatterMediumStyle];
-
-    //Compare if next day
-    [defaultFormatter setDateFormat:@"dd"];
-    [defaultFormatter setTimeZone:self.timeZone];
-    NSString* d1 = [defaultFormatter stringFromDate:[[NSDate date] dateByAddingTimeInterval:offset]];
-    [defaultFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-    NSString* d2 = [defaultFormatter stringFromDate:[[NSDate date] dateByAddingTimeInterval:offset]];
-
     NSString* currentTime = [NSString stringWithFormat:@"%@",[formatter stringFromDate:[[NSDate date] dateByAddingTimeInterval:offset]]];
-    
-    if([d1 intValue] > [d2 intValue])
-        currentTime = [currentTime stringByAppendingString:@" [>]"];
-    else if ([d1 intValue] < [d2 intValue])
-        currentTime = [currentTime stringByAppendingString:@" [<]"];
     return currentTime;
+}
+
+- (NSString*)getflagIcon:(NSTimeInterval)offset
+{
+    //Compare if next or prev day
+    [defaultFormatter setTimeZone:self.timeZone];
+    NSString* currentZone = [defaultFormatter stringFromDate:[[NSDate date] dateByAddingTimeInterval:offset]];
+    [defaultFormatter setTimeZone:[[allZones firstObject] timeZone]];
+    NSString* refZone = [defaultFormatter stringFromDate:[[NSDate date] dateByAddingTimeInterval:offset]];
+    
+    if([currentZone intValue] > [refZone intValue])
+        return @" ⃕";
+    else if ([currentZone intValue] < [refZone intValue])
+        return @" ⃔";
+    else
+        return @"";
 }
 
 - (NSDate*)currentTime

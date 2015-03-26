@@ -18,7 +18,6 @@ MKCoordinateRegion tempRegion;
 
 - (IBAction)addPin:(UILongPressGestureRecognizer*)sender;
 - (IBAction)dismissKeyboard:(UITapGestureRecognizer*)sender;
-- (void)updateTab;
 
 @property (strong) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UITextField *locationField;

@@ -25,17 +25,9 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.previousVC = (UITabBarController*) self.presentingViewController;
     [zoneNameField becomeFirstResponder];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-       /* NSURL* timeZoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/timezone/json?location=%f,%f&timestamp=%f",tempLocation.latitude,tempLocation.longitude,[[NSDate date] timeIntervalSince1970]]];
-        
-        NSData* rawtimeZoneData = [NSData dataWithContentsOfURL:timeZoneURL];
-        NSDictionary* timeZoneData = [NSJSONSerialization JSONObjectWithData:rawtimeZoneData options:0 error:nil];
-        
-        //Create Time zone object from retrieved data
-        timeZone = [NSTimeZone timeZoneWithName:[timeZoneData objectForKey:@"timeZoneId"]];
-        */
-        
         //Set labels on screen
         zoneNameField.text=[NSString stringWithFormat:@"%@",tempLocationName];
         latLabel.text=[NSString stringWithFormat:@"%f",tempLocation.latitude];
@@ -47,14 +39,11 @@
         else dstLabel.backgroundColor=[UIColor grayColor];
         
         //Set Time
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            
-            [NSTimer scheduledTimerWithTimeInterval:0.01
-                                             target:self
-                                           selector:@selector(updateTime)
-                                           userInfo:nil
-                                            repeats:YES];
-        }];
+        [NSTimer scheduledTimerWithTimeInterval:0.1
+                                         target:self
+                                       selector:@selector(updateTime)
+                                       userInfo:nil
+                                        repeats:YES];
     }];
 }
 
@@ -64,8 +53,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-/* Add or cancel */
-
+//Add timezone
 - (void)addZone:(UIBarButtonItem *)sender
 {
     if(timeZone!=nil)
@@ -73,16 +61,18 @@
         Zone *zone = [[Zone alloc] initWithName:zoneNameField.text info:nil timeZone:timeZone location:tempLocation];
         [allZones addObject:zone];
         [self dismissViewControllerAnimated:YES completion:^{
+            [self.previousVC setSelectedIndex:0];
         }];
     }
 }
 
+//Cancel adding timezone
 - (void)addCancelled:(UIBarButtonItem *)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)dismiss:(UIGestureRecognizer*)sender
+- (IBAction)dismiss:(UIGestureRecognizer*)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

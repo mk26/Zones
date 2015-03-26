@@ -28,12 +28,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 - (IBAction)addPin:(UILongPressGestureRecognizer*)sender
 {
     if (sender.state != UIGestureRecognizerStateBegan)
         return;
-    
+
     CGPoint touchPoint = [sender locationInView:mapView];
     CLLocationCoordinate2D touchMapCoordinate =
     [mapView convertPoint:touchPoint toCoordinateFromView:mapView];
@@ -148,8 +147,6 @@ calloutAccessoryControlTapped:(UIControl *)control
 {
     AddViewController* addVC = [[self storyboard] instantiateViewControllerWithIdentifier:@"AddVC"];
     
-    //NSOperationQueue* operationQueue = [[NSOperationQueue alloc] init];
-    
     NSBlockOperation *fetchoperation = [NSBlockOperation blockOperationWithBlock:^{
         NSURL* timeZoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/timezone/json?location=%f,%f&timestamp=%f",tempLocation.latitude,tempLocation.longitude,[[NSDate date] timeIntervalSince1970]]];
         
@@ -173,11 +170,6 @@ calloutAccessoryControlTapped:(UIControl *)control
     NSArray* operations = [[NSArray alloc] initWithObjects:fetchoperation, segueOperation, nil];
     
     [[NSOperationQueue mainQueue] addOperations:operations waitUntilFinished:NO];
-}
-
--(void)updateTab
-{
-    [self.tabBarController setSelectedIndex:0];
 }
 
 - (IBAction)dismissKeyboard:(UITapGestureRecognizer*)sender;

@@ -28,7 +28,7 @@
 {
     [zonesTable reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
     if([allZones count]==0) editZonesButton.enabled=NO;
-        else editZonesButton.enabled=YES;
+    else editZonesButton.enabled=YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,36 +39,40 @@
 
 /* UITableView delegates */
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [allZones count];
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (ZoneCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *cellID = @"ZoneCell";
     
-    UITableViewCell *newCell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    ZoneCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     
-    if (newCell==nil)
+    if (cell==nil)
     {
-        newCell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
+        cell = [[ZoneCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         //newCell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     }
     
-    newCell.textLabel.text=[[[allZones objectAtIndex:indexPath.row] name] uppercaseString];
-    newCell.detailTextLabel.text=[[allZones objectAtIndex:indexPath.row] currentTimeWithOffset:timePeekSlider.value];
-    newCell.textLabel.textColor=[UIColor whiteColor];
-    newCell.textLabel.font=[UIFont fontWithName:@"DIN Alternate" size:17.0];
-    newCell.detailTextLabel.textColor=[UIColor whiteColor];
-    newCell.detailTextLabel.font=[UIFont fontWithName:@"Akkurat-Mono" size:29.0];
-    newCell.backgroundColor=[self backgroundColorForTime:newCell.detailTextLabel.text];
-    return newCell;
+    cell.locationName.text=[[[allZones objectAtIndex:indexPath.row] name] uppercaseString];
+    cell.timestamp.text=[[allZones objectAtIndex:indexPath.row] currentTimeWithOffset:timePeekSlider.value];
+    //cell.timestamp.font=[UIFont fontWithName:@"Akkurat-Mono" size:29.0];
+    cell.backgroundColor=[self backgroundColorForTime:cell.timestamp.text];
+    
+    //Mark reference point
+    if(indexPath.row == 0)
+    {
+        cell.flagIcon.text = @"⚑";
+    }
+    else cell.flagIcon.text = [[allZones objectAtIndex:indexPath.row] getflagIcon:timePeekSlider.value];
+    return cell;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return 72;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -77,7 +81,7 @@
     [zonesTable reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
--(void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [timer invalidate];
 }
@@ -87,7 +91,7 @@
     [self beginTimer];
 }
 
--(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
 }
@@ -100,9 +104,16 @@
     [allZones insertObject:temp atIndex:destinationIndexPath.row];
 }
 
--(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return @"Remove";
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    AlarmsViewController* alarmsVC = [[self storyboard] instantiateViewControllerWithIdentifier:@"AlarmsVC"];
+    alarmsVC.modalPresentationStyle=UIModalPresentationOverFullScreen;
+    [self presentViewController:alarmsVC animated:YES completion:nil];
 }
 
 //Edit zones list
@@ -113,69 +124,76 @@
         sender.title=@"Edit";
         [zonesTable setEditing:NO animated:YES];
         [self beginTimer];
-        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            timePeekSlider.alpha = 1.0;
-            [timePeekSlider setHidden:NO];
-        } completion:^(BOOL finished) {
-        }];
+        [UIView animateWithDuration:0.5
+                              delay:0.0
+                            options:UIViewAnimationOptionCurveEaseOut animations:^{
+                                timePeekSlider.alpha = 1.0;
+                                [timePeekSlider setHidden:NO];
+                            }
+                         completion:^(BOOL finished) {
+                         }];
     }
     else if ([zonesTable isEditing]==NO)
     {
         [zonesTable setEditing:YES animated:YES];
         sender.title=@"Done";
         [timer invalidate];
-        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            timePeekSlider.alpha = 0.0;
-        } completion:^(BOOL finished) {
-            [timePeekSlider setHidden:YES];
-        }];
+        [UIView animateWithDuration:0.3
+                              delay:0.0
+                            options:UIViewAnimationOptionCurveEaseOut animations:^{
+                                timePeekSlider.alpha = 0.0;
+                            }
+                         completion:^(BOOL finished) {
+                             [timePeekSlider setHidden:YES];
+                         }];
     }
 }
 
 - (IBAction)timePeekChanged:(UISlider*)sender
 {
-    [[allZones firstObject] currentTimeWithOffset:timePeekSlider.value];
-    timePeekSlider.tintColor = [self backgroundColorForTime:[zonesTable cellForRowAtIndexPath:zonesTable.indexPathsForVisibleRows.firstObject].detailTextLabel.text];
+    if(allZones.count>0)
+        [[allZones firstObject] currentTimeWithOffset:timePeekSlider.value];
+    
+    
     /*UIView* changeView = [[UIView alloc] initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width/2)-50, ([UIScreen mainScreen].bounds.size.height/2)-50, 100, 100)];
-    changeView.layer.cornerRadius=5;
-    changeView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.4];
-    UILabel* offsetLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 100)];
-    offsetLabel.font = [UIFont fontWithName:@"Menlo" size:40];
-    offsetLabel.textColor = [UIColor whiteColor];
-    offsetLabel.text = [NSString stringWithFormat:@"+ %0.0f",timePeekSlider.value/3600];
-    [self.view addSubview:changeView];
-    if(![offsetLabel isDescendantOfView:changeView])
-        [changeView addSubview:offsetLabel];*/
+     changeView.layer.cornerRadius=5;
+     changeView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.4];
+     UILabel* offsetLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 100)];
+     offsetLabel.font = [UIFont fontWithName:@"Menlo" size:40];
+     offsetLabel.textColor = [UIColor whiteColor];
+     offsetLabel.text = [NSString stringWithFormat:@"+ %0.0f",timePeekSlider.value/3600];
+     [self.view addSubview:changeView];
+     if(![offsetLabel isDescendantOfView:changeView])
+     [changeView addSubview:offsetLabel];*/
     
     /*[UIView animateWithDuration:1.0
-                          delay:3.0
-                        options:UIViewAnimationCurveEaseIn | UIViewAnimationOptionAutoreverse
-                     animations: ^{
-                         
-                     }
-                     completion:^(BOOL finished){
-                         [changeView removeFromSuperview];
-                     }];*/
+     delay:3.0
+     options:UIViewAnimationCurveEaseIn | UIViewAnimationOptionAutoreverse
+     animations: ^{
+     
+     }
+     completion:^(BOOL finished){
+     [changeView removeFromSuperview];
+     }];*/
 }
 
 - (IBAction)timePeekSwipe:(UIPanGestureRecognizer*)sender
 {
     CGPoint velocity = [sender velocityInView:self.view];
     if (velocity.x > 0) {
-        timePeekSlider.value += 300;
+        timePeekSlider.value += fabs(velocity.x);
     }
     else {
-        timePeekSlider.value -= 300;
+        timePeekSlider.value -= fabs(velocity.x);
     }
-    timePeekSlider.tintColor = [self backgroundColorForTime:[zonesTable cellForRowAtIndexPath:zonesTable.indexPathsForVisibleRows.firstObject].detailTextLabel.text];
 }
 
 - (void)beginTimer
 {
-    timer = [[NSTimer alloc] initWithFireDate:[NSDate date] interval:0.01 target:zonesTable selector:@selector(reloadData) userInfo:nil repeats:YES];
+    timer = [[NSTimer alloc] initWithFireDate:[NSDate date] interval:0.1 target:zonesTable selector:@selector(reloadData) userInfo:nil repeats:YES];
     
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
         [timer fire];
     }];
 }
