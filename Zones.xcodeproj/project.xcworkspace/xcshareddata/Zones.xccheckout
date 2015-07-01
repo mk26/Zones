@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>81D5D918-2432-4DE7-A753-E91878ADE016</string>
 	<key>IDESourceControlProjectName</key>
-	<string>Zones</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>51F560217CFCADDE1FBF5424C09EDE63AE6CFD78</key>
 		<string>https://github.com/mk26/Zones.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Zones.xcodeproj</string>
+	<string>Zones.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>51F560217CFCADDE1FBF5424C09EDE63AE6CFD78</key>

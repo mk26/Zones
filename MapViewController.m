@@ -43,9 +43,7 @@
     MKCoordinateSpan span = MKCoordinateSpanMake(50, 50);
     tempRegion = MKCoordinateRegionMake(touchMapCoordinate, span);
     
-    //[mapView showAnnotations:mapView.annotations animated:YES];
 }
-
 
 - (MKPointAnnotation*)prepareAnnotationWithCoordinates:(CLLocationCoordinate2D)coordinate
 {
@@ -155,13 +153,12 @@ calloutAccessoryControlTapped:(UIControl *)control
         
         //Create Time zone object from retrieved data
         NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:[timeZoneData objectForKey:@"timeZoneId"]];
-        
-        //addVC.zoneNameLabel.text=view.annotation.title;
         addVC.timeZone=timeZone;
     }];
     
     NSBlockOperation *segueOperation = [NSBlockOperation blockOperationWithBlock:^{
         addVC.modalPresentationStyle=UIModalPresentationOverFullScreen;
+        addVC.modalPresentationCapturesStatusBarAppearance = YES;
         [self presentViewController:addVC animated:YES completion:nil];
     }];
     

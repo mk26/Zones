@@ -8,6 +8,7 @@
 
 #import "ListViewController.h"
 
+
 @interface ListViewController ()
 
 @end
@@ -67,6 +68,10 @@
         cell.flagIcon.text = @"⚑";
     }
     else cell.flagIcon.text = [[allZones objectAtIndex:indexPath.row] getflagIcon:timePeekSlider.value];
+    
+    NSMutableArray* reminders = [[allZones objectAtIndex:indexPath.row] reminders];
+    NSDate* recentAlarm = [reminders count] > 0 ? [reminders lastObject] : @"";
+    cell.alarms.text = [recentAlarm description];
     return cell;
 }
 
@@ -112,7 +117,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     AlarmsViewController* alarmsVC = [[self storyboard] instantiateViewControllerWithIdentifier:@"AlarmsVC"];
+    alarmsVC.zone=[allZones objectAtIndex:indexPath.row];
     alarmsVC.modalPresentationStyle=UIModalPresentationOverFullScreen;
+    alarmsVC.modalPresentationCapturesStatusBarAppearance = YES;
     [self presentViewController:alarmsVC animated:YES completion:nil];
 }
 
@@ -181,10 +188,10 @@
 {
     CGPoint velocity = [sender velocityInView:self.view];
     if (velocity.x > 0) {
-        timePeekSlider.value += fabs(velocity.x);
+        timePeekSlider.value += fabs(velocity.x)/2;
     }
     else {
-        timePeekSlider.value -= fabs(velocity.x);
+        timePeekSlider.value -= fabs(velocity.x)/2;
     }
 }
 

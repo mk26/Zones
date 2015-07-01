@@ -7,9 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
+#import "Zone.h"
 
-@interface AlarmsViewController : UIViewController
+@interface AlarmsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) Zone* zone;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (weak, nonatomic) IBOutlet UITextField *reminderName;
 
 - (IBAction)dismiss:(UIGestureRecognizer*)sender;
+- (IBAction)dismiss;
+- (IBAction)addAlarm;
 
 @end

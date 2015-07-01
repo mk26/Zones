@@ -11,7 +11,7 @@
 
 @implementation Zone
 
-/*Designated initializer*/
+//Designated initializer
 - (Zone*)initWithName:(NSString*) name
                  info:(NSString*) info
              timeZone:(NSTimeZone*) timeZone
@@ -23,19 +23,18 @@
         self.info=info;
         self.timeZone=timeZone;
         self.location=location;
+        self.reminders=[[NSMutableArray alloc] init];
     }
     return self;
 }
 
-/*Simple Initializer*/
-
-- (id) init
+- (id)init
 {
     return [self initWithName:@"Name" info:@"info" timeZone:nil location:CLLocationCoordinate2DMake(0, 0)];
 }
 
-/*To find index of object for filtered views*/
-+ (NSInteger) getActualIndexOf:(Zone*)current
+//Find exact match during filtering
++ (NSInteger)getActualIndexOf:(Zone*)current
 {
     NSInteger index = 0;
     for (temp in allZones)
@@ -71,6 +70,11 @@
         return @"";
 }
 
+- (void)addReminder:(NSString*)reminder
+{
+    [self.reminders addObject:reminder];
+}
+
 - (NSDate*)currentTime
 {
     [formatter setTimeZone:self.timeZone];
@@ -81,7 +85,7 @@
 
 /* For archiving */
 
-- (id) initWithCoder:(NSCoder *)aDecoder
+- (id)initWithCoder:(NSCoder*)aDecoder
 {
     if (self = [super init])
     {
@@ -91,18 +95,19 @@
         CLLocationDegrees latitude = [aDecoder decodeDoubleForKey:@"latitude"];
         CLLocationDegrees longitude = [aDecoder decodeDoubleForKey:@"longitude"];
         self.location = CLLocationCoordinate2DMake(latitude,longitude);
+        self.reminders = [aDecoder decodeObjectForKey:@"reminders"];
     }
     return self;
 }
 
-- (void) encodeWithCoder:(NSCoder *)aCoder
+- (void)encodeWithCoder:(NSCoder*)aCoder
 {
     [aCoder encodeObject:self.name forKey:@"name"];
     [aCoder encodeObject:self.info forKey:@"info"];
     [aCoder encodeObject:self.timeZone forKey:@"timeZone"];
     [aCoder encodeDouble:self.location.latitude forKey:@"latitude"];
     [aCoder encodeDouble:self.location.longitude forKey:@"longitude"];
+    [aCoder encodeObject:self.reminders forKey:@"reminders"];
 }
-
 
 @end

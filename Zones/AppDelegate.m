@@ -21,6 +21,10 @@
     
     allZones = [[NSMutableArray alloc] init];
     [self loadData];
+    
+    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+    }
     // Override point for customization after application launch.
     return YES;
 }
@@ -55,16 +59,16 @@
 }
 
 /* Data Storage */
-- (NSString*) savedDataLocation
+- (NSString*)savedDataLocation
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *filename = [documentsDirectory stringByAppendingPathComponent:@"zonesdata.archive"];
-    
+
     return filename;
 }
 
-- (void) saveData
+- (void)saveData
 {
     NSString *filename = [self savedDataLocation];
     
@@ -80,7 +84,7 @@
     NSLog(@"Saving data to %@", filename);
 }
 
-- (void) loadData
+- (void)loadData
 {
     NSMutableArray *loadedZones = [[NSMutableArray alloc] init];
     
